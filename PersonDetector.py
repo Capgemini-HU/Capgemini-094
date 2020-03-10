@@ -21,7 +21,6 @@ while True:
     for (xA, yA, xB, yB) in pick:
         cv2.rectangle(frame, (xA, yA), (xB, yB), (0, 255, 0), 2)
 
-    # out.write(frame.astype('uint8'))
     cv2.imshow('frame', frame)
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
