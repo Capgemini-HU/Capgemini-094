@@ -8,4 +8,3 @@ install:
 
 script:
   - python main.py
-  - python PersonDetector.py
