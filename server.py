@@ -10,7 +10,6 @@ else:
     debug = 0
 
 print("Debug: ", debug)
-HOST, PORT = "", 9999
 
 class TCPHandler(socketserver.BaseRequestHandler):
     """
@@ -21,9 +20,3 @@ class TCPHandler(socketserver.BaseRequestHandler):
         if debug:
             print(self.data)
         self.request.sendall(self.data.upper())
-
-
-server = socketserver.TCPServer((HOST, PORT), TCPHandler)
-
-# run server
-server.serve_forever()
