@@ -4,7 +4,7 @@ python:
   - "3.7"
 
 install:
-  - pip install -r requirements.txt
-
+  - pip install --user -r requirements.txt
+  - pip install .
 script:
-  - python main.py
+  - python main.py 1
