@@ -1,9 +1,4 @@
 import socketserver
-import sys
-
-# Debug statement. Script can be started with
-# "python server.py 0"
-# "python server.py 1"
 
 class TCPHandler(socketserver.BaseRequestHandler):
     debug = None
