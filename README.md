@@ -4,7 +4,7 @@ De server zorgt ervoor dat clients foto's versturen naar de server.
 Op de server zal de processing gedaan worden.
 
 
-#Overige informatie:
+## Overige informatie:
 
 
 Requirements.txt:
