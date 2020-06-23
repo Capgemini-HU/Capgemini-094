@@ -3,7 +3,7 @@ from imutils.object_detection import non_max_suppression
 import numpy as np
 
 # Custom packages
-import Vector2
+from Vector2 import Vector2
 
 # Class definitions
 class PersonDetection:
@@ -13,12 +13,12 @@ class PersonDetection:
 
     def detectPersons(self, image):
         # image (CV2 image): The image to detect persons on.
-        (rects, weights) = self.hog.detectMultiScale(image, winStride=(4, 4), padding=(8, 8), scale=1.05)
+        (rects, weights) = self.hog.detectMultiScale(image, winStride=(2, 2), padding=(1, 1), scale=0.2)
         rects = np.array([[x, y, x + w, y + h] for (x, y, w, h) in rects]) # Is this necessary?
         pick = non_max_suppression(rects, probs=None, overlapThresh=0.65)
         
         returnList = []
-        height, width, channels = image.shape
+        height, width = image.shape
         xDivide = width/100
         yDivide = height/100
         for (xA, yA, xB, yB) in pick:

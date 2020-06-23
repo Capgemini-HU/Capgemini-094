@@ -1,24 +1,29 @@
 import cv2
-
+import os
 
 class ImageRequesterDummy:
-    def __init__(self, pathToImages, imagePrefix, imageCount):
-        self.pathToImages = pathToImages
-        self.imagePrefix = imagePrefix
-        self.imageCount = imageCount
-        self.lastImages = {}
-        self.newImageAvailable = {}
-        self.currentImageIndex = 0
+    def __init__(self, pathToImages, imagePrefix, imageType, imageCount):
+        self._pathToImages = pathToImages
+        self._imagePrefix = imagePrefix
+        self._imageType = imageType
+        self._imageCount = imageCount
+        self._lastImages = {}
+        self._newImageAvailable = {}
+        self._currentImageIndex = 0
 
     def requestImage(self, machineID):
-        self.lastImages[machineID] = cv2.imread(self.pathToImages + self.imagePrefix + str(self.currentImageIndex), cv.IMREAD_GRAYSCALE)
-        self.currentImageIndex = self.currentImageIndex + 1 if self.currentImageIndex + 1 < self.imageCount else 0
-        self.newImageAvailable[machineID] = True
+        fullPath = os.path.join(self._pathToImages, self._imagePrefix + str(self._currentImageIndex)) + "." + self._imageType
+        self._lastImages[machineID] = cv2.imread(fullPath, cv2.IMREAD_GRAYSCALE)
+        self._currentImageIndex = self._currentImageIndex + 1 if self._currentImageIndex + 1 < self._imageCount else 0
+        self._newImageAvailable[machineID] = True
 
     
     def getLatestImage(self, machineID):
-        self.newImageAvailable[machineID] = False
-        return self.lastImages[machineID]
+        self._newImageAvailable[machineID] = False
+        return self._lastImages[machineID]
     
     def newImageAvailable(self, machineID):
-        return self.newImageAvailable[machineID]
+        if not machineID in self._newImageAvailable:
+            self._newImageAvailable[machineID] = False
+            return False
+        return self._newImageAvailable[machineID]

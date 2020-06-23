@@ -1,5 +1,5 @@
-import Vector2
-import PersonDetection
+from Vector2 import Vector2
+from PersonDetection import PersonDetection
 
 class PersonTracker:
     def __init__(self, inputDeviceCount, personDetection, imageRequester):
@@ -7,14 +7,12 @@ class PersonTracker:
         self.personDetection = personDetection
         self.imageRequester = imageRequester
         self.currentMachineIndex = 0
-    
-    def setup(self):
-        self.imageRequester.requestImage(0)
 
     def update(self):
         # get image
         if(not self.imageRequester.newImageAvailable(self.currentMachineIndex)):
-            return  # No new image available yet
+            self.imageRequester.requestImage(self.currentMachineIndex)
+            return
         image = self.imageRequester.getLatestImage(self.currentMachineIndex)
 
         # process image and save vectors
@@ -24,5 +22,5 @@ class PersonTracker:
 
     def getData(self):
         returnValue = self.savedPositions
-        self.savedPositions = [list() for i in range(inputDeviceCount)]
+        self.savedPositions = [list() for i in range(len(self.savedPositions))]
         return returnValue
