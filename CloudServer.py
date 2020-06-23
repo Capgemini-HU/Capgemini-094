@@ -1,6 +1,6 @@
 class CloudServer:
-    def update():
+    def update(self):
         pass
 
-    def datapointReceived(dataPoint, systemID):
+    def datapointReceived(self, dataPoint, systemID):
         pass

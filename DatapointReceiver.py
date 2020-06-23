@@ -1,3 +1,3 @@
 class DatapointReceiver:
-    def update(image):
+    def update(self, image):
         pass

@@ -1,6 +1,6 @@
 class WebServer:
-    def update():
+    def update(self):
         pass
 
-    def addHumanPoints(points, perspectiveID):
+    def addHumanPoints(self, points, perspectiveID):
         pass
