@@ -22,4 +22,4 @@ try:
     img.save('src\\main\\webapp\\heatmap.png')
     print("heatmap saved.")
 except FileNotFoundError:
-    print("Image not found, nothing saved")
+    print("heatmap_points.csv not found, nothing saved")
