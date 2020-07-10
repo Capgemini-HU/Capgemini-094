@@ -23,13 +23,16 @@ try:
     with open("C:\\InnovationFiles\\heatmap_points.csv") as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         for row in csv_reader:
-            heatmap_info[int(row[0]) + 1, int(row[1]) + 1] = [255, 0, 0, 255]
-            heatmap_info[int(row[0]) + 1, int(row[1])] = [255, 0, 0, 255]
-            heatmap_info[int(row[0]), int(row[1]) + 1] = [255, 0, 0, 255]
-            heatmap_info[int(row[0]), int(row[1])] = [255, 0, 0, 255]
-            heatmap_info[int(row[0]) - 1, int(row[1])] = [255, 0, 0, 255]
-            heatmap_info[int(row[0]), int(row[1]) - 1] = [255, 0, 0, 255]
-            heatmap_info[int(row[0]) - 1, int(row[1]) - 1] = [255, 0, 0, 255]
+            try:
+                heatmap_info[int(row[0]) + 1, int(row[1]) + 1] = [255, 0, 0, 255]
+                heatmap_info[int(row[0]) + 1, int(row[1])] = [255, 0, 0, 255]
+                heatmap_info[int(row[0]), int(row[1]) + 1] = [255, 0, 0, 255]
+                heatmap_info[int(row[0]), int(row[1])] = [255, 0, 0, 255]
+                heatmap_info[int(row[0]) - 1, int(row[1])] = [255, 0, 0, 255]
+                heatmap_info[int(row[0]), int(row[1]) - 1] = [255, 0, 0, 255]
+                heatmap_info[int(row[0]) - 1, int(row[1]) - 1] = [255, 0, 0, 255]
+            except IndexError:
+                print("Not all information is inside image. Some pixels exceed image bounds.")
     img = Image.fromarray(heatmap_info)
     img.convert('RGB')
 
